@@ -1,33 +1,50 @@
-abstract class Collection<T> {
-  late Node<T> head;
+import 'linkedlist.dart';
+
+abstract class Collection<T> extends Object{
+  Node<T>? head;
   int _size = 0;
 
   Collection();
 
-  T add(T val);
-  Node<T> copy();
+  void add(T val);
+  LinkedList<T> copy();
   T operator[](int index);
   void printString();
 
-  bool contains(T value) {
+  bool contains(Object val) {
+    Node<T>? tempHead = head;
+    while(tempHead != null) {
+      if (tempHead.getData() == val) {
+        return true;
+      }
+
+      tempHead = tempHead.next;
+    }
     return false;
   }
 
-  bool equals(Node<T> value) {
+  bool equals(Object val) {
     return false;
   }
 
   int get size => _size;
 
-  void _setSize() {
+  void setSize() {
     _size++;
   }
 
 }
 
 class Node<T> {
-  late Node<T> next;
-  late Node<T> prev;
-  late T data;
+  Node<T>? next;
+  late T _data;
+
+  Node(T info) {
+    _data = info;
+  }
+
+  getData() {
+    return _data;
+  }
 
 }

@@ -1,30 +1,67 @@
 import'collection.dart';
 
-class LinkedList<T> extends Collection<T> {
-
-  late Node<T> tail;
+class LinkedList<T> extends Collection {
 
   @override
-  T operator [](int index) {
+  operator [](int index) {
     // TODO: implement []
-    throw UnimplementedError();
+    if (index < 0 || index > size) {
+      throw("Out of bounds");
+    }
+
+    int counter = 0;
+    Node? tempHead = head;
+    while(counter != index) {
+      tempHead = tempHead?.next;
+      counter++;
+    }
+
+    return tempHead?.getData();
   }
 
   @override
-  T add(T val) {
-    // TODO: implement add
-    throw UnimplementedError();
-  }
-
-  @override
-  Node<T> copy() {
+  LinkedList copy() {
     // TODO: implement copy
-    throw UnimplementedError();
+    var newList = LinkedList<T>();
+    Node? tempHead = head;
+    while(tempHead != null) {
+      newList.add(tempHead.getData());
+      tempHead = tempHead.next;
+    }
+
+    return newList;
   }
 
   @override
   void printString() {
-    // TODO: implement printString
+    Node? tempHead = head;
+    while (tempHead != null) {
+      print(tempHead.getData());
+      tempHead = tempHead.next;
+    }
   }
+
+  @override
+  void add(val) {
+    // TODO: implement add
+
+    if (head == null) {
+      head = Node(val);
+      setSize();
+      return;
+    }
+
+    Node? curr = head;
+    while(curr?.next != null) {
+      curr = curr?.next;
+    }
+
+    curr?.next = Node(val);
+    setSize();
+
+  }
+
+
+
 
 }
