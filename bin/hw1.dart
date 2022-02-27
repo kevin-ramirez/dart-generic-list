@@ -1,59 +1,38 @@
 import'collection.dart';
 import 'linkedlist.dart';
 
-// void test({int? hey}){
-//
-// }
-//
-// double printMe([List<int>? c,int?a]) {
-//   double sum = 0.0;
-//   if (c != null && a != null) {
-//     if (c.length <= a) {
-//       for(int i = 0; i < c.length; i++) {
-//         sum += c[i];
-//       }
-//       return sum;
-//     } else {
-//       int i = 0;
-//       while(i != a) {
-//         sum += c[i];
-//         i++;
-//       }
-//       return sum;
-//     }
-//   }
-//   return sum;
-// }
-
 void main(List<String> arguments) {
-  // print('Hello world!');
-  // var list = [1, 2, 3, 4, 5, 6];
-  // print(printMe(list, 2));
-  // test(hey: 1);
-  // final int t;
-  // t = 1;
-
-  // ---------------------------------- //
-
 
   var myList = LinkedList<String>();
   myList.add("Kevin");
   myList.add("James");
   myList.add("Donald");
-  myList.add(1);
+  myList.add("Kevin");
 
+  print("Testing printString");
   myList.printString();
+  print("Checking size -- should be 3");
   print(myList.size);
-  //print(myList[1]);
 
   var copiedList = myList.copy();
+  print("Testing copy method by printing contents");
   copiedList.printString();
+  print("Copied size should be 3");
   print(copiedList.size);
 
+  print("Testing contains method, should be true then false");
   print(myList.contains("James"));
-  print(myList.contains(1));
-  // var myOther = LinkedList<int>()
-  // ..add(1)
-  // ..add(2);
-  // myOther.printString();
+  print(myList.contains("Dan"));
+
+  print("Testing cascading on linked list object");
+  var myOther = LinkedList<String>()
+  ..add("Kevin")
+  ..add("James")
+  ..add("Donald");
+  myOther.printString();
+
+  print("Testing equals method with first list created and a new list should return true then false");
+  print(myList.equals(myOther));
+  myList.add("Danny");
+  print(myList.equals(myOther));
 }
